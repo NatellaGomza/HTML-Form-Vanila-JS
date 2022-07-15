@@ -20,21 +20,27 @@
       <label for="link" class="hidden_label">Ссылка на репозитарий этого задания</label> </br>
       <textarea id="link" class="text" rows="1" onkeyup="textarea_resize(event, 15, 1);">Ссылка на репозитарий этого задания</textarea><br>
       <div id="text_area_div"></div>
-      <label for="workpreferences" class="hidden_label">Имя</label> </br>
-      <textarea id="workpreferences"
+      <label for="work_preferences" class="hidden_label">Имя</label> </br>
+      <textarea id="work_preferences"
         class="text" rows="1" onkeyup="textarea_resize(event, 15, 1);">Что вы точно не хотите делать в работе, что вы делаете с неохотой?</textarea> <br>
       <div id="text_area_div"></div>
     </div>
   </div>
-  <div class="leftBorder firstPart">
-    <div class="wrapper secondPart">
+  <div class="left_border first_part">
+    <div class="wrapper second_part">
       <h4>Как вы оцениваете свою способность взаимодействовать с дизайном?</h4>
       <p>А именно, работу с векторами, внимательность к деталям, возможность
         проявить инициативу - например, можете ли сверстать макет адаптируя
         его для мобильных устройств с макета под десктоп?</p>
-      <label for="commentForRange" class="hidden_label">Ссылка на репозитарий этого задания</label> </br>
+      <label for="comment_for_range" class="hidden_label">Ссылка на репозитарий этого задания</label> </br>
       <textarea id="link" class="text" rows="1" onkeyup="textarea_resize(event, 15, 1);">Ваш комментарий(по желанию)</textarea><br>
       <div id="text_area_div"></div>
+      <div class="range_wrap">
+        <input type="range" class="volume" value="0" OnInput="fRangeChange();" min="0" max="100" step="1">
+        <div>0</div>
+        <span class="range_label">0%</span>
+        <div>100%</div>
+      </div>
     </div>
   </div>
   <input type="submit" id="submit" value="Отправить">
