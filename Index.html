@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="calc__wrapper">
-      <div class="calculator">
-        <div class="outputWrapper">
-          <div class="calculation"></div>
-          <div class="output"></div>
-        </div>
 
-        <button class="calc__btn number">7</button>
-        <button class="calc__btn number">8</button>
-        <button class="calc__btn number">9</button>
-        <button class="calc__btn operator plus">+</button>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-        <button class="calc__btn number">4</button>
-        <button class="calc__btn number">5</button>
-        <button class="calc__btn number">6</button>
-        <button class="calc__btn operator minus">-</button>
+<body>
+  <form method="post" action="https://fe.it-academy.by/TestForm.php" id="form"></form>
 
-        <button class="calc__btn number">1</button>
-        <button class="calc__btn number">2</button>
-        <button class="calc__btn number">3</button>
+  <div class="leftBorder firstPart">
+    <div class="wrapper">
+      <label for="name" class="hidden_label">Имя</label> </br>
+      <textarea id="name" class="text" rows="1" onkeyup="textarea_resize(event, 15, 1);">Имя</textarea><br>
+      <div id="text_area_div"></div>
+      <label for="telegram" class="hidden_label">Ник в Telegram</label> </br>
+      <textarea id="telegram" class="text" rows="1" onkeyup="textarea_resize(event, 15, 1);">Ник в Telegram</textarea><br>
+      <div id="text_area_div"></div>
+      <label for="link" class="hidden_label">Ссылка на репозитарий этого задания</label> </br>
+      <textarea id="link" class="text" rows="1" onkeyup="textarea_resize(event, 15, 1);">Ссылка на репозитарий этого задания</textarea><br>
+      <div id="text_area_div"></div>
+      <label for="workpreferences" class="hidden_label">Имя</label> </br>
+      <textarea id="workpreferences"
+        class="text" rows="1" onkeyup="textarea_resize(event, 15, 1);">Что вы точно не хотите делать в работе, что вы делаете с неохотой?</textarea> <br>
+      <div id="text_area_div"></div>
+    </div>
+  </div>
+  <div class="leftBorder firstPart">
+    <div class="wrapper secondPart">
+      <h4>Как вы оцениваете свою способность взаимодействовать с дизайном?</h4>
+      <p>А именно, работу с векторами, внимательность к деталям, возможность
+        проявить инициативу - например, можете ли сверстать макет адаптируя
+        его для мобильных устройств с макета под десктоп?</p>
+      <label for="commentForRange" class="hidden_label">Ссылка на репозитарий этого задания</label> </br>
+      <textarea id="link" class="text" rows="1" onkeyup="textarea_resize(event, 15, 1);">Ваш комментарий(по желанию)</textarea><br>
+      <div id="text_area_div"></div>
+    </div>
+  </div>
+  <input type="submit" id="submit" value="Отправить">
+  </form>
+  <script src="main.js"></script>
+</body>
 
-        <button class="calc__btn operator multiply">*</button>
-
-        <button class="calc__btn number zero">0</button>
-        <button class="calc__btn number decimalDot">.</button>
-        <button class="calc__btn operator devide">/</button>
-        <button class="calc__btn reset">AC</button>
-        <button class="calc__btn operator equal">=</button>
-      </div>
-    <script src="main.js"></script>
-  </body>
 </html>
