@@ -1,5 +1,10 @@
 let leftBorderColor;
 let isBlockReady = false;
+let form = document.querySelector("form");
+let leftBorder = document.getElementsByClassName("left_border");
+console.log(leftBorder);
+let button = document.querySelector("#submit");
+let mainCounter = 0;
 
 function textareaResize(event, line_height, min_line_count) {
   let min_line_height = min_line_count * line_height;
@@ -53,7 +58,6 @@ function getFirstBlock(event) {
   isBlockReady = false;
 
   for (let i = 0; i < textareaArr.length; i++) {
-    console.log(textareaArr[i].value != "");
     if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
       counter--;
     }
@@ -79,22 +83,20 @@ function checkFirstBlock(event) {
   if (event.target.value == "Имя" || event.target.value == "Ник в Telegram" ||
     event.target.value == "Ссылка на репозитарий этого задания" ||
     event.target.value == "Что вы точно не хотите делать в работе, что вы делаете с неохотой?") {
-    
+
     let error = document.createElement("span");
     error.className = "error";
     error.innerHTML = "Это поле обязательно для заполнения";
     event.target.after(error);
-  } 
+  }
 
   for (let i = 0; i < textareaArr.length; i++) {
-    console.log(textareaArr[i].value != "");
     if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
       counter--;
-
     }
   }
 
-  if (counter !== textareaArr.length) {
+  if (counter != textareaArr.length) {
     block.style.borderColor = "red";
   }
 }
@@ -108,12 +110,12 @@ function getSecondBlock(event) {
     if ((textareaArr[i].value != textareaArr[i].placeholder) || (textareaArr[i].value != "")) {
       isBlockReady = true;
     } else if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
-      console.log('dfdfg')
       isBlockReady = false;
     }
   }
 
   if (isBlockReady) {
+    mainCounter++;
     pickOutBorder(event, block);
   }
 }
@@ -123,7 +125,7 @@ function checkSecondBlock(event) {
   let textarea = document.querySelectorAll('.second_block textarea');
   let textareaArr = Array.from(textarea);
   isBlockReady = false;
-event.target.parentNode.removeChild(event.target.nextSibling);
+  event.target.parentNode.removeChild(event.target.nextSibling);
 
   if (event.target.value == "Ваш комментарий(по желанию)") {
     let error = document.createElement("span");
@@ -156,6 +158,7 @@ function getThirdBlock(event) {
   }
 
   if (isBlockReady) {
+    mainCounter++;
     pickOutBorder(event, block);
   }
 }
@@ -184,20 +187,21 @@ function checkThirdBlock(event) {
 
 function getFourthBlock(event) {
   let block = document.querySelector('.fourth_block');
+  let textarea = document.querySelectorAll('.fifth_block textarea');
   let textareaArr = Array.from(textarea);
   isBlockReady = false;
-  
+
   for (let i = 0; i < textareaArr.length; i++) {
     if ((textareaArr[i].value != textareaArr[i].placeholder) || (textareaArr[i].value != "")) {
       isBlockReady = true;
     } else if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
-      console.log('dfdfg')
       isBlockReady = false;
       block.style.borderColor = "red";
     }
   }
 
   if (isBlockReady) {
+    mainCounter++;
     pickOutBorder(event, block);
   }
 }
@@ -229,17 +233,18 @@ function getFifthBlock(event) {
   let textarea = document.querySelectorAll('.fifth_block textarea');
   let textareaArr = Array.from(textarea);
   isBlockReady = false;
+
   for (let i = 0; i < textareaArr.length; i++) {
     if ((textareaArr[i].value != textareaArr[i].placeholder) || (textareaArr[i].value != "")) {
       isBlockReady = true;
     } else if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
-      console.log('dfdfg')
       isBlockReady = false;
       block.style.borderColor = "red";
     }
   }
 
   if (isBlockReady) {
+    mainCounter++;
     pickOutBorder(event, block);
   }
 }
@@ -347,7 +352,6 @@ function pickOutBorder(event, block) {
   }
 
   console.log(isBlockReady);
-
 }
 
 function removeSelection(event) {
@@ -357,7 +361,6 @@ function removeSelection(event) {
   if (!leftBorderColor && !isBlockReady) {
     leftBorder.style.borderColor = "lightgrey";
   }
-
 }
 
 function changingFirstRange() {
@@ -416,3 +419,24 @@ function hideSpan() {
   const hiddenSpan = document.querySelector('.hidden_span');
   hiddenSpan.style.display = "none";
 }
+
+button.addEventListener("click", function (event) {
+  event.preventDefault();
+  let textInfo = document.querySelectorAll("textarea");
+  let textInfoArr = Array.from(textInfo);
+  let arr = Array.from(leftBorder);
+  arr.forEach( el => {
+    console.log(el);
+    if (el.borderColor === "rgb(5, 237, 237)") {
+      mainCounter++;
+    }
+  })
+
+    console.log( mainCounter++);
+
+    if (mainCounter == textInfoArr.length) {
+      button.value = "ОТПРАВЛЕНО";
+      button.style.backgroundColor = "green";
+      arr.forEach(el => el.style.borderColor = "green");
+    }
+});
