@@ -1,3 +1,12 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+label:first-of-type {
+  margin-top: 20px;
+}
+
 .wrapper {
   width: 90%;
   margin: 0 auto;
@@ -11,31 +20,48 @@
 
 .hidden_label {
   display: none;
+  width: 100%;
 }
 
 textarea {
   resize: none;
-  overflow:hidden;
+  overflow: hidden;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  width: 100%;
+  margin: 20px 0px;
+  word-wrap: normal;
 }
 
 .text {
   color: rgb(5, 237, 237);
+}
+
+.text {
   width: 100%;
   border-width: 0px;
   border-bottom: 1px solid black;
 }
 
-.leftBorder {
-  border-left: 3px solid grey;
+.left_border {
+  border-left: 7px solid lightgrey;
   margin-bottom: 5px;
+}
+
+
+.left_border:last-of-type {
+  margin-bottom: -10px;
 }
 
 input[type="submit"] {
   width: 100%;
+  background-color: grey;
+  border: none;
+  color: white;
+  height: 50px;
 }
 
-#text_area_div
-{
+#text_area_div {
   width: 170px;
   font-family: Arial;
   font-size: 12px;
@@ -50,11 +76,10 @@ input[type="submit"] {
   color: #c7c5d9;
   display: flex;
   flex-flow: wrap;
-  font: 13px 'Trebuchet MS';
   justify-content: space-between;
-  margin: 100px auto;
   position: relative;
   width: 100%;
+  margin: 20px 0px;
 }
 
 input[type="range"] {
@@ -68,7 +93,8 @@ input[type="range"] {
 }
 
 input[type="range"]::-webkit-slider-thumb {
-  background: rgb(5, 237, 237);;
+  background: rgb(5, 237, 237);
+  ;
   border: 1px solid black;
   border-radius: 50%;
   box-shadow: 0px 0px 1px 0px #040700;
@@ -83,14 +109,47 @@ input[type="range"]::-webkit-slider-runnable-track {
   height: 2px;
 }
 
-.range_label {
-  background: #ffffff;
-  border: 0px solid #e9e8eb;
-  border-radius: 4px;
-  bottom: 40px;
+.range_label,
+.range_label_second {
+  top: 20px;
+  left: 10px;
   color: rgb(5, 237, 237);
-  left: -10px;
-  padding: 4px 10px;
   position: absolute;
   transition: border 900ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+#valueMin1,
+#valueMin2 {
+  visibility: hidden;
+}
+
+h4 {
+  padding-top: 20px;
+  margin: 0px
+}
+
+.fourth_block .text {
+  color: grey;
+}
+
+.fourth_block textarea {
+  margin: 10px 0px;
+}
+
+.fourth_block span {
+  color: grey;
+  display: none;
+}
+
+.fourth_block h4,
+.free_block h4 {
+  color: rgb(5, 237, 237);
+}
+
+.free_block textarea {
+  color: black;
+}
+
+.fifth_block label {
+  padding-top: 20px;
 }
