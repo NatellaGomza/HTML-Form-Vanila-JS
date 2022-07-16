@@ -60,13 +60,13 @@ textarea {
   display: none;
 }
 
-input[type="submit"] {
+/* input[type="submit"] {
   width: 100%;
   background-color: grey;
   border: none;
   color: white;
   height: 50px;
-}
+} */
 
 #text_area_div {
   width: 170px;
@@ -148,4 +148,13 @@ h4 {
 
 .free_block textarea {
   color: black;
+}
+
+.error {
+  color:red;
+  display:block;
+}
+
+.left_border:last-of-type {
+  margin-bottom:-10px;
 }

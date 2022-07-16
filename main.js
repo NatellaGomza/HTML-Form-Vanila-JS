@@ -1,4 +1,5 @@
 let leftBorderColor;
+let isBlockReady = false;
 
 function textareaResize(event, line_height, min_line_count) {
   let min_line_height = min_line_count * line_height;
@@ -7,11 +8,12 @@ function textareaResize(event, line_height, min_line_count) {
   div.innerHTML = obj.value;
   let obj_height = div.offsetHeight;
 
-  if (event.keyCode == 13)
+  if (event.keyCode == 13) {
     obj_height += line_height;
-  else if (obj_height < min_line_height)
+  } else if (obj_height < min_line_height) {
     obj_height = min_line_height;
-  obj.style.height = obj_height + 'px';
+    obj.style.height = obj_height + 'px';
+  }
 }
 
 function showHiddenLabel(event) {
@@ -21,7 +23,7 @@ function showHiddenLabel(event) {
   if (event.target.value === contents) {
     event.target.value = "";
   }
-  
+
   target.style.visibility = 'visible';
 
   target.style.color = 'rgb(5, 237, 237)';
@@ -40,7 +42,241 @@ function hideLabel(event) {
     event.target.value = target.innerHTML;
   }
 
-  removeSelection(event);  
+  removeSelection(event);
+}
+
+function getFirstBlock(event) {
+  let block = event.currentTarget;
+  let textarea = document.querySelectorAll('.first_block textarea');
+  let textareaArr = Array.from(textarea);
+  let counter = 4;
+  isBlockReady = false;
+
+  for (let i = 0; i < textareaArr.length; i++) {
+    console.log(textareaArr[i].value != "");
+    if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
+      counter--;
+    }
+  }
+
+  if (counter === textareaArr.length) {
+    isBlockReady = true;
+  }
+
+  if (isBlockReady) {
+    pickOutBorder(event, block);
+  }
+}
+
+function checkFirstBlock(event) {
+  let block = event.currentTarget;
+  let textarea = document.querySelectorAll('.first_block textarea');
+  let textareaArr = Array.from(textarea);
+  let counter = 4;
+  isBlockReady = false;
+  event.target.parentNode.removeChild(event.target.nextSibling);
+
+  if (event.target.value == "Имя" || event.target.value == "Ник в Telegram" ||
+    event.target.value == "Ссылка на репозитарий этого задания" ||
+    event.target.value == "Что вы точно не хотите делать в работе, что вы делаете с неохотой?") {
+    
+    let error = document.createElement("span");
+    error.className = "error";
+    error.innerHTML = "Это поле обязательно для заполнения";
+    event.target.after(error);
+  } 
+
+  for (let i = 0; i < textareaArr.length; i++) {
+    console.log(textareaArr[i].value != "");
+    if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
+      counter--;
+
+    }
+  }
+
+  if (counter !== textareaArr.length) {
+    block.style.borderColor = "red";
+  }
+}
+
+function getSecondBlock(event) {
+  let block = event.currentTarget;
+  let textarea = document.querySelectorAll('.second_block textarea');
+  let textareaArr = Array.from(textarea);
+  isBlockReady = false;
+  for (let i = 0; i < textareaArr.length; i++) {
+    if ((textareaArr[i].value != textareaArr[i].placeholder) || (textareaArr[i].value != "")) {
+      isBlockReady = true;
+    } else if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
+      console.log('dfdfg')
+      isBlockReady = false;
+    }
+  }
+
+  if (isBlockReady) {
+    pickOutBorder(event, block);
+  }
+}
+
+function checkSecondBlock(event) {
+  let block = event.currentTarget;
+  let textarea = document.querySelectorAll('.second_block textarea');
+  let textareaArr = Array.from(textarea);
+  isBlockReady = false;
+event.target.parentNode.removeChild(event.target.nextSibling);
+
+  if (event.target.value == "Ваш комментарий(по желанию)") {
+    let error = document.createElement("span");
+    error.className = "error";
+    error.innerHTML = "Это поле обязательно для заполнения";
+    event.target.after(error);
+  }
+
+  for (let i = 0; i < textareaArr.length; i++) {
+    if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
+      isBlockReady = false;
+      block.style.borderColor = "red";
+    }
+  }
+}
+
+function getThirdBlock(event) {
+  let block = event.currentTarget;
+  let textarea = document.querySelectorAll('.third_block textarea');
+  let textareaArr = Array.from(textarea);
+  isBlockReady = false;
+  for (let i = 0; i < textareaArr.length; i++) {
+    if ((textareaArr[i].value != textareaArr[i].placeholder) || (textareaArr[i].value != "")) {
+      isBlockReady = true;
+    } else if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
+      console.log('dfdfg')
+      isBlockReady = false;
+      block.style.borderColor = "red";
+    }
+  }
+
+  if (isBlockReady) {
+    pickOutBorder(event, block);
+  }
+}
+
+function checkThirdBlock(event) {
+  let block = event.currentTarget;
+  let textarea = document.querySelectorAll('.third_block textarea');
+  let textareaArr = Array.from(textarea);
+  isBlockReady = false;
+  event.target.parentNode.removeChild(event.target.nextSibling);
+
+  if (event.target.value == "Ваш комментарий(по желанию)") {
+    let error = document.createElement("span");
+    error.className = "error";
+    error.innerHTML = "Это поле обязательно для заполнения";
+    event.target.after(error);
+  }
+
+  for (let i = 0; i < textareaArr.length; i++) {
+    if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
+      isBlockReady = false;
+      block.style.borderColor = "red";
+    }
+  }
+}
+
+function getFourthBlock(event) {
+  let block = document.querySelector('.fourth_block');
+  let textareaArr = Array.from(textarea);
+  isBlockReady = false;
+  
+  for (let i = 0; i < textareaArr.length; i++) {
+    if ((textareaArr[i].value != textareaArr[i].placeholder) || (textareaArr[i].value != "")) {
+      isBlockReady = true;
+    } else if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
+      console.log('dfdfg')
+      isBlockReady = false;
+      block.style.borderColor = "red";
+    }
+  }
+
+  if (isBlockReady) {
+    pickOutBorder(event, block);
+  }
+}
+
+function checkFourthBlock(event) {
+  let block = event.currentTarget;
+  let textarea = document.querySelectorAll('.fourth_block textarea');
+  let textareaArr = Array.from(textarea);
+  isBlockReady = false;
+  event.target.parentNode.removeChild(event.target.nextSibling);
+
+  if (event.target.value == "Бывают задачи интересные, а бывает, к примеру, нужно добавить на сайт пару новых языков в режиме  copy/paste в файл локализации или помочь опубликовать пост в блоге -  md файл из Гугл документа") {
+    let error = document.createElement("span");
+    error.className = "error";
+    error.innerHTML = "Это поле обязательно для заполнения";
+    event.target.after(error);
+  }
+
+  for (let i = 0; i < textareaArr.length; i++) {
+    if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
+      isBlockReady = false;
+      block.style.borderColor = "red";
+    }
+  }
+}
+
+function getFifthBlock(event) {
+  let block = document.querySelector('.fifth_block');
+  let textarea = document.querySelectorAll('.fifth_block textarea');
+  let textareaArr = Array.from(textarea);
+  isBlockReady = false;
+  for (let i = 0; i < textareaArr.length; i++) {
+    if ((textareaArr[i].value != textareaArr[i].placeholder) || (textareaArr[i].value != "")) {
+      isBlockReady = true;
+    } else if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
+      console.log('dfdfg')
+      isBlockReady = false;
+      block.style.borderColor = "red";
+    }
+  }
+
+  if (isBlockReady) {
+    pickOutBorder(event, block);
+  }
+}
+
+function checkFifthBlock(event) {
+  let block = event.currentTarget;;
+  let textarea = document.querySelectorAll('.fifth_block textarea');
+  let textareaArr = Array.from(textarea);
+  isBlockReady = false;
+  event.target.parentNode.removeChild(event.target.nextSibling);
+
+  if (event.target.value == "Готовы ли посвятить все 100% своего времени на работу с нашими задачами, не отвлекаясь на стороннюю разработку?") {
+    let error = document.createElement("span");
+    error.className = "error";
+    error.innerHTML = "Это поле обязательно для заполнения";
+    event.target.after(error);
+  }
+
+  for (let i = 0; i < textareaArr.length; i++) {
+    if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
+      isBlockReady = false;
+      block.style.borderColor = "red";
+    }
+  }
+}
+
+function changeColor(event, block, textarea) {
+  let textareaArr = Array.from(textarea);
+  for (let i = 0; i < textareaArr.length; i++) {
+    if ((textareaArr[i].value != textareaArr[i].placeholder) || (textareaArr[i].value != "")) {
+      isBlockReady = true;
+    }
+  }
+
+  if (isBlockReady) {
+    pickOutBorder(event, block);
+  }
 }
 
 function showHiddenLabelUnder(event) {
@@ -51,7 +287,7 @@ function showHiddenLabelUnder(event) {
   if (event.target.value == contents) {
     event.target.value = "";
   }
-console.log(target);
+
   target.style.display = 'block';
   event.target.nextSibling.nextElementSibling.style.color = 'rgb(5, 237, 237)';
   event.target.style.color = "black";
@@ -62,7 +298,7 @@ console.log(target);
 function hideLabelUnder(event) {
   let target = event.target.nextSibling.nextSibling.nextElementSibling;
 
-  if (event.target.value === '') {   
+  if (event.target.value === '') {
     target.style.display = 'none';
     event.target.value = target.innerHTML;
   }
@@ -71,24 +307,23 @@ function hideLabelUnder(event) {
 }
 
 function showHiddenLabelLastBlock(event) {
-    let target = event.target.previousSibling.previousElementSibling;
-    let contents = target.innerHTML;
-  
-    if (event.target.value === contents) {
-      event.target.value = "";
-    }
-    
-    target.style.display = 'block';
-    target.style.color = 'rgb(5, 237, 237)';
-    event.target.style.color = "black";
-    event.target.defaultValue = "";
-  
-    pickOutBorder(event);
+  let target = event.target.previousSibling.previousElementSibling;
+  let contents = target.innerHTML;
+
+  if (event.target.value === contents) {
+    event.target.value = "";
+  }
+
+  target.style.display = 'block';
+  target.style.color = 'rgb(5, 237, 237)';
+  event.target.style.color = "black";
+  event.target.defaultValue = "";
+
+  pickOutBorder(event);
 }
 
 function hideLabelLastBlock(event) {
   let target = event.target.previousSibling.previousElementSibling;
-  console.log(target);
 
   if (event.target.value === '') {
     target.style.display = 'none';
@@ -97,20 +332,29 @@ function hideLabelLastBlock(event) {
   }
 }
 
-function pickOutBorder(event) {
+function pickOutBorder(event, block) {
   let leftBorder = event.target.parentNode.parentNode;
   leftBorderColor = true;
 
   if (!!leftBorderColor) {
     leftBorder.style.borderColor = "grey";
   }
+
+  if (isBlockReady && block) {
+    block.style.borderColor = "rgb(5, 237, 237)";
+  } else if (!isBlockReady && block) {
+    block.style.borderColor = "lightgrey";
+  }
+
+  console.log(isBlockReady);
+
 }
 
 function removeSelection(event) {
   let leftBorder = event.target.parentNode.parentNode;
   leftBorderColor = false;
 
-  if(!leftBorderColor) {
+  if (!leftBorderColor && !isBlockReady) {
     leftBorder.style.borderColor = "lightgrey";
   }
 
