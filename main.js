@@ -1,3 +1,5 @@
+let leftBorderColor;
+
 function textareaResize(event, line_height, min_line_count) {
   let min_line_height = min_line_count * line_height;
   let obj = event.target;
@@ -13,42 +15,105 @@ function textareaResize(event, line_height, min_line_count) {
 }
 
 function showHiddenLabel(event) {
-  let contents = event.target.previousSibling.previousElementSibling.innerHTML;
+  let target = event.target.previousSibling.previousElementSibling;
+  let contents = target.innerHTML;
+
   if (event.target.value === contents) {
     event.target.value = "";
   }
-  event.target.previousSibling.previousElementSibling.style.display = 'block';
-  event.target.previousSibling.previousElementSibling.style.color = 'rgb(5, 237, 237)';
+  
+  target.style.visibility = 'visible';
+
+  target.style.color = 'rgb(5, 237, 237)';
   event.target.style.color = "black";
   event.target.defaultValue = "";
+
+  pickOutBorder(event);
 }
 
 function hideLabel(event) {
+  let target = event.target.previousSibling.previousElementSibling;
+
   if (event.target.value === '') {
-    event.target.previousSibling.previousElementSibling.style.display = 'none';
+    target.style.visibility = 'hidden';
     event.target.style.color = 'rgb(5, 237, 237)';
-    event.target.value = event.target.previousSibling.previousElementSibling.innerHTML;
+    event.target.value = target.innerHTML;
   }
+
+  removeSelection(event);  
 }
 
 function showHiddenLabelUnder(event) {
-  let contents = event.target.nextSibling.nextSibling.nextElementSibling.innerHTML;
-  console.log(event.target.value);
-  console.log(typeof contents);
+  let target = event.target.nextSibling.nextSibling.nextElementSibling;
+  let contents = target.innerHTML;
+  leftBorderColor = true;
+
   if (event.target.value == contents) {
-    console.log(event.target.value);
     event.target.value = "";
   }
-  event.target.nextSibling.nextSibling.nextElementSibling.style.display = 'block';
+console.log(target);
+  target.style.display = 'block';
   event.target.nextSibling.nextElementSibling.style.color = 'rgb(5, 237, 237)';
   event.target.style.color = "black";
+
+  pickOutBorder(event);
 }
 
 function hideLabelUnder(event) {
-  if (event.target.value === '') {
-    event.target.nextSibling.nextSibling.nextElementSibling.style.display = 'none';
-    event.target.value = event.target.nextSibling.nextSibling.nextElementSibling.innerHTML;
+  let target = event.target.nextSibling.nextSibling.nextElementSibling;
+
+  if (event.target.value === '') {   
+    target.style.display = 'none';
+    event.target.value = target.innerHTML;
   }
+
+  removeSelection(event);
+}
+
+function showHiddenLabelLastBlock(event) {
+    let target = event.target.previousSibling.previousElementSibling;
+    let contents = target.innerHTML;
+  
+    if (event.target.value === contents) {
+      event.target.value = "";
+    }
+    
+    target.style.display = 'block';
+    target.style.color = 'rgb(5, 237, 237)';
+    event.target.style.color = "black";
+    event.target.defaultValue = "";
+  
+    pickOutBorder(event);
+}
+
+function hideLabelLastBlock(event) {
+  let target = event.target.previousSibling.previousElementSibling;
+  console.log(target);
+
+  if (event.target.value === '') {
+    target.style.display = 'none';
+    event.target.style.color = 'rgb(5, 237, 237)';
+    event.target.value = target.innerHTML;
+  }
+}
+
+function pickOutBorder(event) {
+  let leftBorder = event.target.parentNode.parentNode;
+  leftBorderColor = true;
+
+  if (!!leftBorderColor) {
+    leftBorder.style.borderColor = "grey";
+  }
+}
+
+function removeSelection(event) {
+  let leftBorder = event.target.parentNode.parentNode;
+  leftBorderColor = false;
+
+  if(!leftBorderColor) {
+    leftBorder.style.borderColor = "lightgrey";
+  }
+
 }
 
 function changingFirstRange() {

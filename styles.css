@@ -3,14 +3,14 @@
   padding: 0px;
 }
 
-label:first-of-type {
-  margin-top: 20px;
-}
-
 .wrapper {
   width: 90%;
   margin: 0 auto;
   padding-bottom: 20px;
+}
+
+.wrapper:first-of-type {
+  padding-top: 20px;
 }
 
 .wrapper.secondPart {
@@ -19,8 +19,12 @@ label:first-of-type {
 }
 
 .hidden_label {
-  display: none;
+  visibility: hidden;
   width: 100%;
+}
+
+.first_block textarea {
+  margin: 5px 0px;
 }
 
 textarea {
@@ -29,7 +33,6 @@ textarea {
   font-family: 'Times New Roman', Times, serif;
   font-size: 16px;
   width: 100%;
-  margin: 20px 0px;
   word-wrap: normal;
 }
 
@@ -48,9 +51,13 @@ textarea {
   margin-bottom: 5px;
 }
 
+.fourth_block label:last-of-type {
+  display: none;
+  visibility: visible;
+}
 
-.left_border:last-of-type {
-  margin-bottom: -10px;
+.fifth_block label:last-of-type {
+  display: none;
 }
 
 input[type="submit"] {
@@ -94,7 +101,6 @@ input[type="range"] {
 
 input[type="range"]::-webkit-slider-thumb {
   background: rgb(5, 237, 237);
-  ;
   border: 1px solid black;
   border-radius: 50%;
   box-shadow: 0px 0px 1px 0px #040700;
@@ -124,7 +130,6 @@ input[type="range"]::-webkit-slider-runnable-track {
 }
 
 h4 {
-  padding-top: 20px;
   margin: 0px
 }
 
@@ -136,11 +141,6 @@ h4 {
   margin: 10px 0px;
 }
 
-.fourth_block span {
-  color: grey;
-  display: none;
-}
-
 .fourth_block h4,
 .free_block h4 {
   color: rgb(5, 237, 237);
@@ -148,8 +148,4 @@ h4 {
 
 .free_block textarea {
   color: black;
-}
-
-.fifth_block label {
-  padding-top: 20px;
 }
