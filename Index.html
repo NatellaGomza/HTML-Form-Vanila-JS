@@ -7,7 +7,7 @@
 </head>
 
 <body>
-  <form method="post" id="form">
+  <form method="post" id="form" onkeyup="checkForm(event)">
     <fieldset>
       <div class="left_border first_block" onkeyup="getFirstBlock(event)" onfocusout="checkFirstBlock(event)">
         <div class="wrapper">
@@ -101,7 +101,7 @@
           <div id="text_area_div"></div>
         </div>
       </div>
-      <input type="submit" id="submit" value="ОТПРАВИТЬ" />
+      <input type="submit" id="submit" value="ОТПРАВИТЬ" onclick="checkForm(event)"/>
     </fieldset>
   </form>
   <script src="main.js"></script>

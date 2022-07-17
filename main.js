@@ -1,13 +1,14 @@
+const fieldset = document.querySelector("fieldset");
+const button = document.querySelector("#submit");
+const form = document.querySelector("form");
 let leftBorderColor;
 let isBlockReady = false;
-let fieldset = document.querySelector("fieldset");
-let button = document.querySelector("#submit");
 
 
 function textareaResize(event, line_height, min_line_count) {
-  let min_line_height = min_line_count * line_height;
-  let obj = event.target;
-  let div = document.getElementById('text_area_div');
+  const min_line_height = min_line_count * line_height;
+  const obj = event.target;
+  const div = document.getElementById('text_area_div');
   div.innerHTML = obj.value;
   let obj_height = div.offsetHeight;
 
@@ -20,8 +21,8 @@ function textareaResize(event, line_height, min_line_count) {
 }
 
 function showHiddenLabel(event) {
-  let target = event.target.previousSibling.previousElementSibling;
-  let contents = event.target.placeholder;
+  const target = event.target.previousSibling.previousElementSibling;
+  const contents = event.target.placeholder;
 
   if (event.target.value === contents) {
     event.target.value = "";
@@ -36,8 +37,8 @@ function showHiddenLabel(event) {
 }
 
 function showHiddenLabelUnder(event) {
-  let target = event.target.nextSibling.nextSibling.nextElementSibling;
-  let contents = event.target.placeholder;
+  const target = event.target.nextSibling.nextSibling.nextElementSibling;
+  const contents = event.target.placeholder;
   leftBorderColor = true;
 
   if (event.target.value == contents) {
@@ -52,8 +53,8 @@ function showHiddenLabelUnder(event) {
 }
 
 function showHiddenLabelLastBlock(event) {
-  let target = event.target.previousSibling.previousElementSibling;
-  let contents = event.target.placeholder;
+  const target = event.target.previousSibling.previousElementSibling;
+  const contents = event.target.placeholder;
 
   if (event.target.value === contents) {
     event.target.value = "";
@@ -68,7 +69,7 @@ function showHiddenLabelLastBlock(event) {
 }
 
 function hideLabel(event) {
-  let target = event.target.previousSibling.previousElementSibling;
+  const target = event.target.previousSibling.previousElementSibling;
 
   if (event.target.value === '') {
     target.style.visibility = 'hidden';
@@ -80,7 +81,7 @@ function hideLabel(event) {
 }
 
 function hideLabelUnder(event) {
-  let target = event.target.nextSibling.nextSibling.nextElementSibling;
+  const target = event.target.nextSibling.nextSibling.nextElementSibling;
 
   if (event.target.value === '') {
     target.style.display = 'none';
@@ -91,7 +92,7 @@ function hideLabelUnder(event) {
 }
 
 function hideLabelLastBlock(event) {
-  let target = event.target.previousSibling.previousElementSibling;
+  const target = event.target.previousSibling.previousElementSibling;
 
   if (event.target.value === '') {
     target.style.display = 'none';
@@ -101,8 +102,8 @@ function hideLabelLastBlock(event) {
 }
 
 function validateBlock(blocks, event) {
-  let block = event.currentTarget;
-  let arrFromBlocks = Array.from(blocks);
+  const block = event.currentTarget;
+  const arrFromBlocks = Array.from(blocks);
   isBlockReady = false;
   for (let i = 0; i < arrFromBlocks.length; i++) {
     if ((arrFromBlocks[i].value != arrFromBlocks[i].placeholder) || (arrFromBlocks[i].value != "")) {
@@ -118,9 +119,9 @@ function validateBlock(blocks, event) {
 }
 
 function getFirstBlock(event) {
-  let block = event.currentTarget;
-  let textarea = document.querySelectorAll('.first_block textarea');
-  let textareaArr = Array.from(textarea);
+  const block = event.currentTarget;
+  const textarea = document.querySelectorAll('.first_block textarea');
+  const textareaArr = Array.from(textarea);
   let counter = 4;
   isBlockReady = false;
 
@@ -140,27 +141,27 @@ function getFirstBlock(event) {
 }
 
 function getSecondBlock(event) {
-  let blocks = document.querySelectorAll('.second_block textarea');
+  const blocks = document.querySelectorAll('.second_block textarea');
   validateBlock(blocks, event);
 }
 
 function getThirdBlock(event) {
-  let blocks = document.querySelectorAll('.third_block textarea');
+  const blocks = document.querySelectorAll('.third_block textarea');
   validateBlock(blocks, event);
 }
 
 function getFourthBlock(event) {
-  let blocks = document.querySelectorAll('.fifth_block textarea');
+  const blocks = document.querySelectorAll('.fifth_block textarea');
   validateBlock(blocks, event);
 }
 
 function getFifthBlock(event) {
-  let blocks = document.querySelectorAll('.fifth_block textarea');
+  const blocks = document.querySelectorAll('.fifth_block textarea');
   validateBlock(blocks, event);
 }
 
 function showErrorMessage(event) {
-  let error = document.createElement("span");
+  const error = document.createElement("span");
   error.className = "error";
   error.innerHTML = "Это поле обязательно для заполнения";
   event.target.after(error);
@@ -176,8 +177,8 @@ function makeRedBorder(arr, block) {
 }
 
 function pointErrors(blocks, event) {
-  let block = event.currentTarget;
-  let arrFromBlocks = Array.from(blocks);
+  const block = event.currentTarget;
+  const arrFromBlocks = Array.from(blocks);
   isBlockReady = false;
   event.target.parentNode.removeChild(event.target.nextSibling);
 
@@ -190,17 +191,17 @@ function pointErrors(blocks, event) {
 }
 
 function checkFirstBlock(event) {
-  let block = event.currentTarget;
-  let textarea = document.querySelectorAll('.first_block textarea');
-  let textareaArr = Array.from(textarea);
+  const block = event.currentTarget;
+  const textarea = document.querySelectorAll('.first_block textarea');
+  const textareaArr = Array.from(textarea);
   let counter = 4;
   isBlockReady = false;
   event.target.parentNode.removeChild(event.target.nextSibling);
 
-  if (event.target.value == "Имя" || event.target.value == "Ник в Telegram" ||
-    event.target.value == "Ссылка на репозитарий этого задания" ||
-    event.target.value == "Что вы точно не хотите делать в работе, что вы делаете с неохотой?") {
-    showErrorMessage(event);
+  for (let i = 0; i < textareaArr.length; i++) {
+    if (textareaArr[i].placeholder === event.target.value) {
+      showErrorMessage(event);
+    }
   }
 
   for (let i = 0; i < textareaArr.length; i++) {
@@ -216,27 +217,27 @@ function checkFirstBlock(event) {
 }
 
 function checkSecondBlock(event) {
-  let blocks = document.querySelectorAll('.second_block textarea');
-  pointErrors(blocks, event); 
+  const blocks = document.querySelectorAll('.second_block textarea');
+  pointErrors(blocks, event);
 }
 
 function checkThirdBlock(event) {
-  let blocks = document.querySelectorAll('.third_block textarea');
-  pointErrors(blocks, event); 
+  const blocks = document.querySelectorAll('.third_block textarea');
+  pointErrors(blocks, event);
 }
 
 function checkFourthBlock(event) {
-  let blocks = document.querySelectorAll('.fourth_block textarea');
-  pointErrors(blocks, event); 
+  const blocks = document.querySelectorAll('.fourth_block textarea');
+  pointErrors(blocks, event);
 }
 
 function checkFifthBlock(event) {
-  let blocks = document.querySelectorAll('.fifth_block textarea');
-  pointErrors(blocks, event); 
+  const blocks = document.querySelectorAll('.fifth_block textarea');
+  pointErrors(blocks, event);
 }
 
 function changeColor(event, block, textarea) {
-  let textareaArr = Array.from(textarea);
+  const textareaArr = Array.from(textarea);
   for (let i = 0; i < textareaArr.length; i++) {
     if ((textareaArr[i].value != textareaArr[i].placeholder) || (textareaArr[i].value != "")) {
       isBlockReady = true;
@@ -249,7 +250,7 @@ function changeColor(event, block, textarea) {
 }
 
 function pickOutBorder(event, block) {
-  let leftBorder = event.target.parentNode.parentNode;
+  const leftBorder = event.target.parentNode.parentNode;
   leftBorderColor = true;
 
   if (!!leftBorderColor) {
@@ -264,7 +265,7 @@ function pickOutBorder(event, block) {
 }
 
 function removeSelection(event) {
-  let leftBorder = event.target.parentNode.parentNode;
+  const leftBorder = event.target.parentNode.parentNode;
   leftBorderColor = false;
 
   if (!leftBorderColor && !isBlockReady) {
@@ -274,8 +275,8 @@ function removeSelection(event) {
 
 function movingRange(rangeInput, rangeLabel, minValue, maxValue) {
   rangeLabel.innerText = rangeInput.value + "%";
-  let rangeLength = (window.getComputedStyle(rangeInput).width);
-  let rangeLabelSize = (window.getComputedStyle(rangeLabel).width);
+  const rangeLength = (window.getComputedStyle(rangeInput).width);
+  const rangeLabelSize = (window.getComputedStyle(rangeLabel).width);
 
   if (+rangeInput.value < 50) {
     rangeLabel.style.left = (parseFloat(rangeLength) / 100 * rangeInput.value - parseFloat(rangeLabelSize) / 2 + 10) + 'px';
@@ -284,7 +285,7 @@ function movingRange(rangeInput, rangeLabel, minValue, maxValue) {
   }
 
   +rangeInput.value >= 96 ? maxValue.style.display = "none" : maxValue.style.display = "block";
-  +rangeInput.value !== 0 ? minValue.style.visibility = "visible" : minValue.style.visibility = "hidden"
+  +rangeInput.value !== 0 ? minValue.style.visibility = "visible" : minValue.style.visibility = "hidden";
 }
 
 function changingFirstRange() {
@@ -293,7 +294,7 @@ function changingFirstRange() {
   const valueMinFirstRange = document.querySelector('#valueMinFirstRange');
   const valueMaxFirstRange = document.querySelector('#valueMaxFirstRange');
 
-  movingRange(rangeInput, rangeLabel, valueMinFirstRange, valueMaxFirstRange);  
+  movingRange(rangeInput, rangeLabel, valueMinFirstRange, valueMaxFirstRange);
 }
 
 function changingSecondRange() {
@@ -322,27 +323,43 @@ function hideSpan() {
   hiddenSpan.style.display = "none";
 }
 
-button.addEventListener("click", function (event) {
-  let leftBorder = document.getElementsByClassName("left_border");
-  let mainCounter = 0;
-  event.preventDefault();
+function checkForm(event) {
+  const leftBorder = document.getElementsByClassName("left_border");
+  const arr = Array.from(leftBorder);
+  const textInfo = document.querySelectorAll("textarea");
+  const textInfoArr = Array.from(textInfo);
 
-  let arr = Array.from(leftBorder);
+  let mainCounter = 0;
+
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].style.borderColor === "rgb(5, 237, 237)") {
       mainCounter++;
+    } else if (arr[i].style.borderColor === "red") {
+      mainCounter--;
+    }
+  }  
+
+  if (event.currentTarget === form) {    
+    if (mainCounter === arr.length) {
+      button.style.backgroundColor = "rgb(5, 237, 237)";
+    } else {
+      button.style.backgroundColor = "grey";
     }
   }
 
-  if (mainCounter === arr.length) {
-    button.value = "ОТПРАВЛЕНО";
-    button.style.backgroundColor = "green";
-    arr.forEach(el => el.style.borderColor = "green");
-    fieldset.setAttribute('disabled', "");
-    let textInfo = document.querySelectorAll("textarea");
-    let textInfoArr = Array.from(textInfo);
-    textInfo.forEach(el => {
-      el.style.backgroundColor = "white"
-    })
+  if (event.currentTarget === button) {
+    event.preventDefault();
+
+    if (mainCounter === arr.length) {
+      button.value = "ОТПРАВЛЕНО";
+      button.style.backgroundColor = "green";
+      fieldset.setAttribute('disabled', "");
+
+      arr.forEach(el => el.style.borderColor = "green");  
+
+      textInfo.forEach(el => {
+        el.style.backgroundColor = "white"
+      })
+    }
   }
-});
+}
