@@ -1,10 +1,7 @@
 let leftBorderColor;
 let isBlockReady = false;
-let form = document.querySelector("form");
-let leftBorder = document.getElementsByClassName("left_border");
-console.log(leftBorder);
+let fieldset = document.querySelector("fieldset");
 let button = document.querySelector("#submit");
-let mainCounter = 0;
 
 function textareaResize(event, line_height, min_line_count) {
   let min_line_height = min_line_count * line_height;
@@ -99,6 +96,7 @@ function checkFirstBlock(event) {
   if (counter != textareaArr.length) {
     block.style.borderColor = "red";
   }
+
 }
 
 function getSecondBlock(event) {
@@ -115,7 +113,6 @@ function getSecondBlock(event) {
   }
 
   if (isBlockReady) {
-    mainCounter++;
     pickOutBorder(event, block);
   }
 }
@@ -158,7 +155,6 @@ function getThirdBlock(event) {
   }
 
   if (isBlockReady) {
-    mainCounter++;
     pickOutBorder(event, block);
   }
 }
@@ -201,7 +197,6 @@ function getFourthBlock(event) {
   }
 
   if (isBlockReady) {
-    mainCounter++;
     pickOutBorder(event, block);
   }
 }
@@ -244,7 +239,6 @@ function getFifthBlock(event) {
   }
 
   if (isBlockReady) {
-    mainCounter++;
     pickOutBorder(event, block);
   }
 }
@@ -421,22 +415,30 @@ function hideSpan() {
 }
 
 button.addEventListener("click", function (event) {
+  let leftBorder = document.getElementsByClassName("left_border");
+  let mainCounter=0;
   event.preventDefault();
-  let textInfo = document.querySelectorAll("textarea");
-  let textInfoArr = Array.from(textInfo);
+  
   let arr = Array.from(leftBorder);
-  arr.forEach( el => {
-    console.log(el);
-    if (el.borderColor === "rgb(5, 237, 237)") {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].style.borderColor === "rgb(5, 237, 237)") {
+      console.log(arr[i]);
       mainCounter++;
     }
-  })
+  }
 
-    console.log( mainCounter++);
+  console.log(mainCounter);
 
-    if (mainCounter == textInfoArr.length) {
-      button.value = "ОТПРАВЛЕНО";
-      button.style.backgroundColor = "green";
-      arr.forEach(el => el.style.borderColor = "green");
-    }
+  if (mainCounter === arr.length) {
+    button.value = "ОТПРАВЛЕНО";
+    button.style.backgroundColor = "green";
+    arr.forEach(el => el.style.borderColor = "green");
+    fieldset.setAttribute('disabled', "");
+    let textInfo = document.querySelectorAll("textarea");
+    let textInfoArr = Array.from(textInfo);
+    textInfo.forEach(el => {
+      console.log(el)
+      el.style.backgroundColor = "white"
+    })
+  }
 });

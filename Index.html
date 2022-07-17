@@ -7,87 +7,102 @@
 </head>
 
 <body>
-  <form method="post" id="form"></form>
-  <div class="left_border first_block" onkeyup="getFirstBlock(event)" onfocusout="checkFirstBlock(event)">
-    <div class="wrapper">
-      <label for="name" class="hidden_label">Имя</label>
-      <textarea id="telegram" class="text" rows="1" onkeyup="textareaResize(event, 20, 1);"
-      onfocus="showHiddenLabel(event)" onblur="hideLabel(event)" placeholder="Имя">Имя</textarea>
-      <div id="text_area_div"></div>
-      <label for="telegram" class="hidden_label">Ник в Telegram</label>
-      <textarea id="telegram" class="text" rows="1" onkeyup="textareaResize(event, 20, 1);"
-        onfocus="showHiddenLabel(event)" onblur="hideLabel(event)" placeholder="Ник в Telegram">Ник в Telegram</textarea>
-      <div id="text_area_div"></div>
-      <label for="link" class="hidden_label">Ссылка на репозитарий этого задания</label>
-      <textarea id="link" class="text" rows="1" onkeyup="textareaResize(event, 20, 1);" onfocus="showHiddenLabel(event)"
-        onblur="hideLabel(event)" placeholder="Ссылка на репозитарий этого задания">Ссылка на репозитарий этого задания</textarea>
-      <div id="text_area_div"></div>
-      <label for="work_preferences" class="hidden_label">Что вы точно не хотите делать в работе, что вы делаете с неохотой?</label>
-      <textarea id="work_preferences" class="text" rows="1" onkeyup="textareaResize(event, 20, 1);"
-        onfocus="showHiddenLabel(event)"
-        onblur="hideLabel(event)" placeholder="Что вы точно не хотите делать в работе, что вы делаете с неохотой?">Что вы точно не хотите делать в работе, что вы делаете с неохотой?</textarea>
-      <div id="text_area_div"></div>
-    </div>
-  </div>
-  <div class="left_border second_block" onkeyup="getSecondBlock(event)" onfocusout="checkSecondBlock(event)">
-    <div class="wrapper second_block">
-      <div>
-        <h4>Как вы оцениваете свою способность взаимодействовать с дизайном?</h4>
-        <p>А именно, работу с векторами, внимательность к деталям, возможность проявить инициативу - например, можете ли сверстать макет адаптируя его для мобильных устройств с макета под десктоп?</p>
+  <form method="post" id="form">
+    <fieldset>
+      <div class="left_border first_block" onkeyup="getFirstBlock(event)" onfocusout="checkFirstBlock(event)">
+        <div class="wrapper">
+          <label for="name" class="hidden_label">Имя</label>
+          <textarea id="telegram" class="text" rows="1" onkeyup="textareaResize(event, 20, 1);"
+            onfocus="showHiddenLabel(event)" onblur="hideLabel(event)" placeholder="Имя"></textarea>
+          <div id="text_area_div"></div>
+          <label for="telegram" class="hidden_label">Ник в Telegram</label>
+          <textarea id="telegram" class="text" rows="1" onkeyup="textareaResize(event, 20, 1);"
+            onfocus="showHiddenLabel(event)" onblur="hideLabel(event)" placeholder="Ник в Telegram"></textarea>
+          <div id="text_area_div"></div>
+          <label for="link" class="hidden_label">Ссылка на репозитарий этого задания</label>
+          <textarea id="link" class="text" rows="1" onkeyup="textareaResize(event, 20, 1);"
+            onfocus="showHiddenLabel(event)" onblur="hideLabel(event)"
+            placeholder="Ссылка на репозитарий этого задания"></textarea>
+          <div id="text_area_div"></div>
+          <label for="work_preferences" class="hidden_label">Что вы точно не хотите делать в работе, что вы делаете с
+            неохотой?</label>
+          <textarea id="work_preferences" class="text" rows="1" onkeyup="textareaResize(event, 20, 1);"
+            onfocus="showHiddenLabel(event)" onblur="hideLabel(event)"
+            placeholder="Что вы точно не хотите делать в работе, что вы делаете с неохотой?"></textarea>
+          <div id="text_area_div"></div>
+        </div>
       </div>
-      <label for="comment_for_range" class="hidden_label">Ссылка на репозитарий этого задания</label>
-      <div class="range_wrap">
-        <input type="range" value="0" OnInput="changingFirstRange();" min="0" max="100" step="1">
-        <div id="valueMin1">0</div>
-        <span class="range_label">0%</span>
-        <div id="valueMax1">100%</div>
+      <div class="left_border second_block" onkeyup="getSecondBlock(event)" onfocusout="checkSecondBlock(event)">
+        <div class="wrapper second_block">
+          <div>
+            <h4>Как вы оцениваете свою способность взаимодействовать с дизайном?</h4>
+            <p>А именно, работу с векторами, внимательность к деталям, возможность проявить инициативу - например,
+              можете
+              ли сверстать макет адаптируя его для мобильных устройств с макета под десктоп?</p>
+          </div>
+          <label for="comment_for_range" class="hidden_label">Ссылка на репозитарий этого задания</label>
+          <div class="range_wrap">
+            <input type="range" value="0" OnInput="changingFirstRange();" min="0" max="100" step="1">
+            <div id="valueMin1">0</div>
+            <span class="range_label">0%</span>
+            <div id="valueMax1">100%</div>
+          </div>
+          <label for="comment1" class="hidden_label">Ваш комментарий(по желанию)</label>
+          <textarea id="comment1" class="text" rows="2" onkeyup="textareaResize(event, 20, 1);"
+            onfocus="showHiddenLabel(event)" onblur="hideLabel(event)"
+            placeholder="Ваш комментарий(по желанию)"></textarea>
+          <div id="text_area_div"></div>
+        </div>
       </div>
-      <label for="comment1" class="hidden_label">Ваш комментарий(по желанию)</label>
-      <textarea id="comment1" class="text" rows="2" onkeyup="textareaResize(event, 20, 1);"
-        onfocus="showHiddenLabel(event)" onblur="hideLabel(event)" placeholder="Ваш комментарий(по желанию)">Ваш комментарий(по желанию)</textarea>
-      <div id="text_area_div"></div>
-    </div>
-  </div>
-  <div class="left_border third_block"  onkeyup="getThirdBlock(event)" onfocusout="checkThirdBlock(event)">
-    <div class="wrapper third_block">
-      <div>
-        <h4>Готовы ли работать с CSS анимацией?</h4>
-        <p>Часто нужна несложная CSS анимация без сторонних библиотек для сопровождения какого-либо действия или плавной подачи информации, но без фанатизма ))</p>
+      <div class="left_border third_block" onkeyup="getThirdBlock(event)" onfocusout="checkThirdBlock(event)">
+        <div class="wrapper third_block">
+          <div>
+            <h4>Готовы ли работать с CSS анимацией?</h4>
+            <p>Часто нужна несложная CSS анимация без сторонних библиотек для сопровождения какого-либо действия или
+              плавной подачи информации, но без фанатизма ))</p>
+          </div>
+          <label for="comment_for_range" class="hidden_label">Ссылка на репозитарий этого задания</label>
+          <div class="range_wrap">
+            <input type="range" class="second_range" value="0" OnInput="changingSecondRange();" min="0" max="100"
+              step="1">
+            <div id="valueMin2">0</div>
+            <span class="range_label_second">0%</span>
+            <div id="valueMax2">100%</div>
+          </div>
+          <label for="comment1" class="hidden_label">Ваш комментарий(по желанию)</label>
+          <textarea id="comment1" class="text" rows="2" onkeyup="textareaResize(event, 20, 1);"
+            onfocus="showHiddenLabel(event)" onblur="hideLabel(event)"
+            placeholder="Ваш комментарий(по желанию)"></textarea>
+          <div id="text_area_div"></div>
+        </div>
       </div>
-      <label for="comment_for_range" class="hidden_label">Ссылка на репозитарий этого задания</label>
-      <div class="range_wrap">
-        <input type="range" class="second_range" value="0" OnInput="changingSecondRange();" min="0" max="100" step="1">
-        <div id="valueMin2">0</div>
-        <span class="range_label_second">0%</span>
-        <div id="valueMax2">100%</div>
+      <div class="left_border fourth_block" onkeyup="getFourthBlock(event)" onfocusout="checkFourthBlock(event)">
+        <div class="wrapper fourth_block">
+          <div>
+            <h4>Как вы относитесь к рутинной работе?</h4>
+          </div>
+          <textarea id="comment1" class="text" rows="2" onkeyup="textareaResize(event, 20, 2); fixHeight();"
+            onfocus="showHiddenLabelUnder(event)" onblur="hideLabelUnder(event)"
+            placeholder="Бывают задачи интересные, а бывает, к примеру, нужно добавить на сайт пару новых языков в режиме  copy/paste в файл локализации или помочь опубликовать пост в блоге -  md файл из Гугл документа"></textarea>
+          <div id="text_area_div"></div>
+          <label for="comment1" class="hidden_label">Бывают задачи интересные, а бывает, к примеру, нужно добавить на
+            сайт
+            пару новых языков в режиме copy/paste в файл локализации или помочь опубликовать пост в блоге - md файл из
+            Гугл документа</label>
+        </div>
       </div>
-      <label for="comment1" class="hidden_label">Ваш комментарий(по желанию)</label>
-      <textarea id="comment1" class="text" rows="2" onkeyup="textareaResize(event, 20, 1);"
-        onfocus="showHiddenLabel(event)" onblur="hideLabel(event)" placeholder="Ваш комментарий(по желанию)">Ваш комментарий(по желанию)</textarea>
-      <div id="text_area_div"></div>
-    </div>
-  </div>
-  <div class="left_border fourth_block" onkeyup="getFourthBlock(event)" onfocusout="checkFourthBlock(event)">
-    <div class="wrapper fourth_block">
-      <div>
-        <h4>Как вы относитесь к рутинной работе?</h4>
+      <div class="left_border fifth_block" onkeyup="getFifthBlock(event)" onfocusout="checkFifthBlock(event)">
+        <div class="wrapper fifth_block">
+          <label>Готовы ли посвятить все 100% своего времени на работу с нашими задачами, не отвлекаясь на стороннюю
+            разработку?</label>
+          <textarea class="text" rows="2" onkeyup="textareaResize(event, 20, 1);"
+            onfocus="showHiddenLabelLastBlock(event)" onblur="hideLabelLastBlock(event)"
+            placeholder="Готовы ли посвятить все 100% своего времени на работу с нашими задачами, не отвлекаясь на стороннюю разработку?"></textarea>
+          <div id="text_area_div"></div>
+        </div>
       </div>
-      <textarea id="comment1" class="text" rows="2" onkeyup="textareaResize(event, 20, 2); fixHeight();"
-        onfocus="showHiddenLabelUnder(event)"
-        onblur="hideLabelUnder(event)" placeholder="Бывают задачи интересные, а бывает, к примеру, нужно добавить на сайт пару новых языков в режиме  copy/paste в файл локализации или помочь опубликовать пост в блоге -  md файл из Гугл документа">Бывают задачи интересные, а бывает, к примеру, нужно добавить на сайт пару новых языков в режиме  copy/paste в файл локализации или помочь опубликовать пост в блоге -  md файл из Гугл документа</textarea>
-      <div id="text_area_div"></div>
-      <label for="comment1" class="hidden_label">Бывают задачи интересные, а бывает, к примеру, нужно добавить на сайт пару новых языков в режиме  copy/paste в файл локализации или помочь опубликовать пост в блоге -  md файл из Гугл документа</label>
-    </div>
-  </div>
-  <div class="left_border fifth_block" onkeyup="getFifthBlock(event)" onfocusout="checkFifthBlock(event)">
-    <div class="wrapper fifth_block" >
-      <label>Готовы ли посвятить все 100% своего времени на работу с нашими задачами, не отвлекаясь на стороннюю разработку?</label>
-      <textarea class="text" rows="2" onkeyup="textareaResize(event, 20, 1);"
-        onfocus="showHiddenLabelLastBlock(event)" onblur="hideLabelLastBlock(event)" placeholder ="Готовы ли посвятить все 100% своего времени на работу с нашими задачами, не отвлекаясь на стороннюю разработку?" >Готовы ли посвятить все 100% своего времени на работу с нашими задачами, не отвлекаясь на стороннюю разработку?</textarea>
-      <div id="text_area_div"></div>
-    </div>
-  </div>
-  <input type="submit" id="submit" value="ОТПРАВИТЬ" />
+      <input type="submit" id="submit" value="ОТПРАВИТЬ" />
+    </fieldset>
   </form>
   <script src="main.js"></script>
 </body>
