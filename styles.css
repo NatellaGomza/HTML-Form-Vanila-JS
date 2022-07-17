@@ -36,8 +36,12 @@ textarea {
   word-wrap: normal;
 }
 
-.text {
+textarea::placeholder {
   color: rgb(5, 237, 237);
+}
+
+.fifth_block textarea::placeholder, .fourth_block textarea::placeholder {
+  color:grey;
 }
 
 .text {
