@@ -42,10 +42,10 @@
           </div>
           <label for="comment_for_range" class="hidden_label">Ссылка на репозитарий этого задания</label>
           <div class="range_wrap">
-            <input type="range" value="0" OnInput="changingFirstRange();" min="0" max="100" step="1">
-            <div id="valueMin1">0</div>
-            <span class="range_label">0%</span>
-            <div id="valueMax1">100%</div>
+            <input type="range"class="first_range" value="0" OnInput="changingFirstRange();" min="0" max="100" step="1">
+            <div id="valueMinFirstRange">0</div>
+            <span class="range_label_first">0%</span>
+            <div id="valueMaxFirstRange">100%</div>
           </div>
           <label for="comment1" class="hidden_label">Ваш комментарий(по желанию)</label>
           <textarea id="comment1" class="text" rows="2" onkeyup="textareaResize(event, 20, 1);"
@@ -65,9 +65,9 @@
           <div class="range_wrap">
             <input type="range" class="second_range" value="0" OnInput="changingSecondRange();" min="0" max="100"
               step="1">
-            <div id="valueMin2">0</div>
+            <div id="valueMinSecondRange">0</div>
             <span class="range_label_second">0%</span>
-            <div id="valueMax2">100%</div>
+            <div id="valueMaxSecondRange">100%</div>
           </div>
           <label for="comment1" class="hidden_label">Ваш комментарий(по желанию)</label>
           <textarea id="comment1" class="text" rows="2" onkeyup="textareaResize(event, 20, 1);"

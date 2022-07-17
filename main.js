@@ -35,18 +35,6 @@ function showHiddenLabel(event) {
   pickOutBorder(event);
 }
 
-function hideLabel(event) {
-  let target = event.target.previousSibling.previousElementSibling;
-
-  if (event.target.value === '') {
-    target.style.visibility = 'hidden';
-    event.target.style.color = 'rgb(5, 237, 237)';
-    event.target.value = event.target.placeholder;
-  }
-
-  removeSelection(event);
-}
-
 function showHiddenLabelUnder(event) {
   let target = event.target.nextSibling.nextSibling.nextElementSibling;
   let contents = event.target.placeholder;
@@ -61,17 +49,6 @@ function showHiddenLabelUnder(event) {
   event.target.style.color = "black";
 
   pickOutBorder(event);
-}
-
-function hideLabelUnder(event) {
-  let target = event.target.nextSibling.nextSibling.nextElementSibling;
-
-  if (event.target.value === '') {
-    target.style.display = 'none';
-    event.target.value = event.target.placeholder;
-  }
-
-  removeSelection(event);
 }
 
 function showHiddenLabelLastBlock(event) {
@@ -90,6 +67,29 @@ function showHiddenLabelLastBlock(event) {
   pickOutBorder(event);
 }
 
+function hideLabel(event) {
+  let target = event.target.previousSibling.previousElementSibling;
+
+  if (event.target.value === '') {
+    target.style.visibility = 'hidden';
+    event.target.style.color = 'rgb(5, 237, 237)';
+    event.target.value = event.target.placeholder;
+  }
+
+  removeSelection(event);
+}
+
+function hideLabelUnder(event) {
+  let target = event.target.nextSibling.nextSibling.nextElementSibling;
+
+  if (event.target.value === '') {
+    target.style.display = 'none';
+    event.target.value = event.target.placeholder;
+  }
+
+  removeSelection(event);
+}
+
 function hideLabelLastBlock(event) {
   let target = event.target.previousSibling.previousElementSibling;
 
@@ -100,11 +100,21 @@ function hideLabelLastBlock(event) {
   }
 }
 
-function showError(event) {
-  let error = document.createElement("span");
-  error.className = "error";
-  error.innerHTML = "Это поле обязательно для заполнения";
-  event.target.after(error);
+function validateBlock(blocks, event) {
+  let block = event.currentTarget;
+  let arrFromBlocks = Array.from(blocks);
+  isBlockReady = false;
+  for (let i = 0; i < arrFromBlocks.length; i++) {
+    if ((arrFromBlocks[i].value != arrFromBlocks[i].placeholder) || (arrFromBlocks[i].value != "")) {
+      isBlockReady = true;
+    } else if ((arrFromBlocks[i].value == arrFromBlocks[i].placeholder) || (arrFromBlocks[i].value == "")) {
+      isBlockReady = false;
+    }
+  }
+
+  if (isBlockReady) {
+    pickOutBorder(event, block);
+  }
 }
 
 function getFirstBlock(event) {
@@ -129,6 +139,56 @@ function getFirstBlock(event) {
   }
 }
 
+function getSecondBlock(event) {
+  let blocks = document.querySelectorAll('.second_block textarea');
+  validateBlock(blocks, event);
+}
+
+function getThirdBlock(event) {
+  let blocks = document.querySelectorAll('.third_block textarea');
+  validateBlock(blocks, event);
+}
+
+function getFourthBlock(event) {
+  let blocks = document.querySelectorAll('.fifth_block textarea');
+  validateBlock(blocks, event);
+}
+
+function getFifthBlock(event) {
+  let blocks = document.querySelectorAll('.fifth_block textarea');
+  validateBlock(blocks, event);
+}
+
+function showErrorMessage(event) {
+  let error = document.createElement("span");
+  error.className = "error";
+  error.innerHTML = "Это поле обязательно для заполнения";
+  event.target.after(error);
+}
+
+function makeRedBorder(arr, block) {
+  for (let i = 0; i < arr.length; i++) {
+    if ((arr[i].value == arr[i].placeholder) || (arr[i].value == "")) {
+      isBlockReady = false;
+      block.style.borderColor = "red";
+    }
+  }
+}
+
+function pointErrors(blocks, event) {
+  let block = event.currentTarget;
+  let arrFromBlocks = Array.from(blocks);
+  isBlockReady = false;
+  event.target.parentNode.removeChild(event.target.nextSibling);
+
+  if (event.target.value == event.target.placeholder) {
+    showErrorMessage(event);
+  }
+
+  makeRedBorder(arrFromBlocks, block);
+
+}
+
 function checkFirstBlock(event) {
   let block = event.currentTarget;
   let textarea = document.querySelectorAll('.first_block textarea');
@@ -140,7 +200,7 @@ function checkFirstBlock(event) {
   if (event.target.value == "Имя" || event.target.value == "Ник в Telegram" ||
     event.target.value == "Ссылка на репозитарий этого задания" ||
     event.target.value == "Что вы точно не хотите делать в работе, что вы делаете с неохотой?") {
-    showError(event);
+    showErrorMessage(event);
   }
 
   for (let i = 0; i < textareaArr.length; i++) {
@@ -155,118 +215,24 @@ function checkFirstBlock(event) {
 
 }
 
-function validateBlock(blocks, event) {
-  let block = event.currentTarget;
-  let arrFromBlocks = Array.from(blocks);
-  isBlockReady = false;
-  for (let i = 0; i < arrFromBlocks.length; i++) {
-    if ((arrFromBlocks[i].value != arrFromBlocks[i].placeholder) || (arrFromBlocks[i].value != "")) {
-      isBlockReady = true;
-    } else if ((arrFromBlocks[i].value == arrFromBlocks[i].placeholder) || (arrFromBlocks[i].value == "")) {
-      isBlockReady = false;
-    }
-  }
-
-  if (isBlockReady) {
-    pickOutBorder(event, block);
-  }
-}
-
-function getSecondBlock(event) {
-  let blocks = document.querySelectorAll('.second_block textarea');
-  validateBlock(blocks, event);
-}
-
 function checkSecondBlock(event) {
-  let block = event.currentTarget;
-  let textarea = document.querySelectorAll('.second_block textarea');
-  let textareaArr = Array.from(textarea);
-  isBlockReady = false;
-  event.target.parentNode.removeChild(event.target.nextSibling);
-
-  if (event.target.value == "Ваш комментарий(по желанию)") {
-    showError(event);
-  }
-
-  for (let i = 0; i < textareaArr.length; i++) {
-    if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
-      isBlockReady = false;
-      block.style.borderColor = "red";
-    }
-  }
-}
-
-function getThirdBlock(event) {
-  let blocks = document.querySelectorAll('.third_block textarea');
-  validateBlock(blocks, event);
+  let blocks = document.querySelectorAll('.second_block textarea');
+  pointErrors(blocks, event); 
 }
 
 function checkThirdBlock(event) {
-  let block = event.currentTarget;
-  let textarea = document.querySelectorAll('.third_block textarea');
-  let textareaArr = Array.from(textarea);
-  isBlockReady = false;
-  event.target.parentNode.removeChild(event.target.nextSibling);
-
-  if (event.target.value == "Ваш комментарий(по желанию)") {
-    showError(event);
-  }
-
-  for (let i = 0; i < textareaArr.length; i++) {
-    if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
-      isBlockReady = false;
-      block.style.borderColor = "red";
-    }
-  }
-}
-
-function getFourthBlock(event) {
-  let blocks = document.querySelectorAll('.fifth_block textarea');
-  validateBlock(blocks, event);
+  let blocks = document.querySelectorAll('.third_block textarea');
+  pointErrors(blocks, event); 
 }
 
 function checkFourthBlock(event) {
-  console.log(event.target.placeholder);
-  let block = event.currentTarget;
-  let textarea = document.querySelectorAll('.fourth_block textarea');
-  let textareaArr = Array.from(textarea);
-  isBlockReady = false;
-  event.target.parentNode.removeChild(event.target.nextSibling);
-
-  if (event.target.value == event.target.placeholder) {
-    showError(event);
-  }
-
-  for (let i = 0; i < textareaArr.length; i++) {
-    if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
-      isBlockReady = false;
-      block.style.borderColor = "red";
-    }
-  }
-}
-
-function getFifthBlock(event) {
-  let blocks = document.querySelectorAll('.fifth_block textarea');
-  validateBlock(blocks, event);
+  let blocks = document.querySelectorAll('.fourth_block textarea');
+  pointErrors(blocks, event); 
 }
 
 function checkFifthBlock(event) {
-  let block = event.currentTarget;;
-  let textarea = document.querySelectorAll('.fifth_block textarea');
-  let textareaArr = Array.from(textarea);
-  isBlockReady = false;
-  event.target.parentNode.removeChild(event.target.nextSibling);
-
-  if (event.target.value == "Готовы ли посвятить все 100% своего времени на работу с нашими задачами, не отвлекаясь на стороннюю разработку?") {
-    showError(event);
-  }
-
-  for (let i = 0; i < textareaArr.length; i++) {
-    if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
-      isBlockReady = false;
-      block.style.borderColor = "red";
-    }
-  }
+  let blocks = document.querySelectorAll('.fifth_block textarea');
+  pointErrors(blocks, event); 
 }
 
 function changeColor(event, block, textarea) {
@@ -306,12 +272,7 @@ function removeSelection(event) {
   }
 }
 
-function changingFirstRange() {
-  let rangeInput = document.querySelector('input[type=\'range\']');
-  let rangeLabel = document.querySelector('.range_label');
-  const valueMin1 = document.querySelector('#valueMin1');
-  const valueMax1 = document.querySelector('#valueMax1');
-
+function movingRange(rangeInput, rangeLabel, minValue, maxValue) {
   rangeLabel.innerText = rangeInput.value + "%";
   let rangeLength = (window.getComputedStyle(rangeInput).width);
   let rangeLabelSize = (window.getComputedStyle(rangeLabel).width);
@@ -322,28 +283,26 @@ function changingFirstRange() {
     rangeLabel.style.left = parseFloat(rangeLength) / 100 * rangeInput.value - parseFloat(rangeLabelSize) / 2 + 'px';
   }
 
-  +rangeInput.value >= 96 ? valueMax1.style.display = "none" : valueMax1.style.display = "block";
-  +rangeInput.value !== 0 ? valueMin1.style.visibility = "visible" : valueMin1.style.visibility = "hidden"
+  +rangeInput.value >= 96 ? maxValue.style.display = "none" : maxValue.style.display = "block";
+  +rangeInput.value !== 0 ? minValue.style.visibility = "visible" : minValue.style.visibility = "hidden"
+}
+
+function changingFirstRange() {
+  const rangeInput = document.querySelector('.first_range');
+  const rangeLabel = document.querySelector('.range_label_first');
+  const valueMinFirstRange = document.querySelector('#valueMinFirstRange');
+  const valueMaxFirstRange = document.querySelector('#valueMaxFirstRange');
+
+  movingRange(rangeInput, rangeLabel, valueMinFirstRange, valueMaxFirstRange);  
 }
 
 function changingSecondRange() {
-  let rangeInput = document.querySelector('.second_range');
-  let rangeLabel = document.querySelector('.range_label_second');
-  const valueMin2 = document.querySelector('#valueMin2');
-  const valueMax2 = document.querySelector('#valueMax2');
+  const rangeInput = document.querySelector('.second_range');
+  const rangeLabel = document.querySelector('.range_label_second');
+  const valueMinSecondRange = document.querySelector('#valueMinSecondRange');
+  const valueMaxSecondRange = document.querySelector('#valueMaxSecondRange');
 
-  rangeLabel.innerText = rangeInput.value + "%";
-  let rangeLength = (window.getComputedStyle(rangeInput).width);
-  let rangeLabelSize = (window.getComputedStyle(rangeLabel).width);
-
-  if (+rangeInput.value < 50) {
-    rangeLabel.style.left = (parseFloat(rangeLength) / 100 * rangeInput.value - parseFloat(rangeLabelSize) / 2 + 10) + 'px';
-  } else {
-    rangeLabel.style.left = parseFloat(rangeLength) / 100 * rangeInput.value - parseFloat(rangeLabelSize) / 2 + 'px';
-  }
-
-  +rangeInput.value >= 96 ? valueMax2.style.display = "none" : valueMax2.style.display = "block";
-  +rangeInput.value !== 0 ? valueMin2.style.visibility = "visible" : valueMin2.style.visibility = "hidden"
+  movingRange(rangeInput, rangeLabel, valueMinSecondRange, valueMaxSecondRange);
 }
 
 function fixHeight() {
