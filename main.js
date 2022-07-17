@@ -155,15 +155,14 @@ function checkFirstBlock(event) {
 
 }
 
-function getSecondBlock(event) {
+function validateBlock(blocks, event) {
   let block = event.currentTarget;
-  let textarea = document.querySelectorAll('.second_block textarea');
-  let textareaArr = Array.from(textarea);
+  let arrFromBlocks = Array.from(blocks);
   isBlockReady = false;
-  for (let i = 0; i < textareaArr.length; i++) {
-    if ((textareaArr[i].value != textareaArr[i].placeholder) || (textareaArr[i].value != "")) {
+  for (let i = 0; i < arrFromBlocks.length; i++) {
+    if ((arrFromBlocks[i].value != arrFromBlocks[i].placeholder) || (arrFromBlocks[i].value != "")) {
       isBlockReady = true;
-    } else if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
+    } else if ((arrFromBlocks[i].value == arrFromBlocks[i].placeholder) || (arrFromBlocks[i].value == "")) {
       isBlockReady = false;
     }
   }
@@ -171,6 +170,11 @@ function getSecondBlock(event) {
   if (isBlockReady) {
     pickOutBorder(event, block);
   }
+}
+
+function getSecondBlock(event) {
+  let blocks = document.querySelectorAll('.second_block textarea');
+  validateBlock(blocks, event);
 }
 
 function checkSecondBlock(event) {
@@ -193,22 +197,8 @@ function checkSecondBlock(event) {
 }
 
 function getThirdBlock(event) {
-  let block = event.currentTarget;
-  let textarea = document.querySelectorAll('.third_block textarea');
-  let textareaArr = Array.from(textarea);
-  isBlockReady = false;
-  for (let i = 0; i < textareaArr.length; i++) {
-    if ((textareaArr[i].value != textareaArr[i].placeholder) || (textareaArr[i].value != "")) {
-      isBlockReady = true;
-    } else if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
-      isBlockReady = false;
-      block.style.borderColor = "red";
-    }
-  }
-
-  if (isBlockReady) {
-    pickOutBorder(event, block);
-  }
+  let blocks = document.querySelectorAll('.third_block textarea');
+  validateBlock(blocks, event);
 }
 
 function checkThirdBlock(event) {
@@ -231,23 +221,8 @@ function checkThirdBlock(event) {
 }
 
 function getFourthBlock(event) {
-  let block = document.querySelector('.fourth_block');
-  let textarea = document.querySelectorAll('.fifth_block textarea');
-  let textareaArr = Array.from(textarea);
-  isBlockReady = false;
-
-  for (let i = 0; i < textareaArr.length; i++) {
-    if ((textareaArr[i].value != textareaArr[i].placeholder) || (textareaArr[i].value != "")) {
-      isBlockReady = true;
-    } else if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
-      isBlockReady = false;
-      block.style.borderColor = "red";
-    }
-  }
-
-  if (isBlockReady) {
-    pickOutBorder(event, block);
-  }
+  let blocks = document.querySelectorAll('.fifth_block textarea');
+  validateBlock(blocks, event);
 }
 
 function checkFourthBlock(event) {
@@ -271,23 +246,8 @@ function checkFourthBlock(event) {
 }
 
 function getFifthBlock(event) {
-  let block = document.querySelector('.fifth_block');
-  let textarea = document.querySelectorAll('.fifth_block textarea');
-  let textareaArr = Array.from(textarea);
-  isBlockReady = false;
-
-  for (let i = 0; i < textareaArr.length; i++) {
-    if ((textareaArr[i].value != textareaArr[i].placeholder) || (textareaArr[i].value != "")) {
-      isBlockReady = true;
-    } else if ((textareaArr[i].value == textareaArr[i].placeholder) || (textareaArr[i].value == "")) {
-      isBlockReady = false;
-      block.style.borderColor = "red";
-    }
-  }
-
-  if (isBlockReady) {
-    pickOutBorder(event, block);
-  }
+  let blocks = document.querySelectorAll('.fifth_block textarea');
+  validateBlock(blocks, event);
 }
 
 function checkFifthBlock(event) {
